@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fill It First</title>
+  <link rel="stylesheet" href="./main.css">
+  <style>
+    .signin {
+      position: relative;
+    }
+    .inputBox input[type="submit"] {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.4s ease;
+    }
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section>
+      <div class="signin">
+        <div class="content"> 
+          <h2>Sign In</h2>
+          <div class="form">
+            <div class="inputBox">
+              <input type="text" id="username" required> <i>Username</i>
+            </div>
+            <div class="inputBox">
+              <input type="password" id="password" required> <i>Password</i>
+            </div>
+            <div class="links"> 
+              <a href="#">Forgot Password</a> 
+              <a href="#">Signup</a>
+            </div>
+            <div class="inputBox">
+              <input type="submit" id="loginButton" value="Login">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const username = document.getElementById('username');
+      const password = document.getElementById('password');
+      const loginButton = document.getElementById('loginButton');
+      const container = document.querySelector('.container');
+      
+      const initialButtonPosition = {
+        top: '50%',
+        left: '50%',
+      };
+
+      function checkInputs() {
+        return username.value !== '' && password.value !== '';
+      }
+
+      function moveButton() {
+        const containerRect = container.getBoundingClientRect();
+        const buttonRect = loginButton.getBoundingClientRect();
+        const maxX = containerRect.width - buttonRect.width;
+        const maxY = containerRect.height - buttonRect.height;
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+
+        loginButton.style.left = `${newX}px`;
+        loginButton.style.top = `${newY}px`;
+      }
+
+      function resetButtonPosition() {
+        loginButton.style.left = initialButtonPosition.left;
+        loginButton.style.top = initialButtonPosition.top;
+        loginButton.style.transform = 'translate(-50%, -50%)';
+      }
+
+      function handleInput() {
+        if (checkInputs()) {
+          resetButtonPosition();
+          loginButton.style.pointerEvents = 'auto';
+        } else {
+          loginButton.style.pointerEvents = 'auto'; // Allow pointer events so it can be moved
+        }
+      }
+
+      username.addEventListener('input', handleInput);
+      password.addEventListener('input', handleInput);
+
+      loginButton.addEventListener('mouseover', function(event) {
+        if (!checkInputs()) {
+          moveButton();//9
+        }
+      });
+
+      // Ensure button starts in a movable state if inputs are not filled
+      if (!checkInputs()) {
+        loginButton.style.pointerEvents = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>
