@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow</title>
+
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Raleway', sans-serif;
+            margin: 0;
+        }
+
+        .img-1{
+            
+            box-shadow: 1px 1px 20px yellow; 
+            width:300px;
+            height: 300px;
+            margin-right: 50px;
+            margin-bottom: 100px;
+         }
+
+        
+         .img-2{
+            
+            filter: drop-shadow(1px 1px 20px yellow);
+            width:300px;
+            height: 300px;
+            margin-bottom: 100px;
+          
+        }
+
+
+    </style>
+</head>
+
+<body>
+       <div class="first-div">
+           
+            <img   class="img-1" src="Dog3-removebg-preview.png" alt="">
+            <img class="img-2" src="Dog3-removebg-preview.png" alt="">
+          
+       </div>
+</body>
+
+</html>
